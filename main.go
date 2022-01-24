@@ -8,9 +8,9 @@ import (
 )
 
 type Customer struct {
-	Name    string
-	City    string
-	Zipcode string
+	Name    string `json:"full name"`
+	City    string `json:"city"`
+	Zipcode string `json:"zipcode"`
 }
 
 func main() {
@@ -47,6 +47,7 @@ func getAllCustomers(w http.ResponseWriter, r *http.Request) {
 			Zipcode: "10001",
 		},
 	}
+	w.Header().Add("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(customers)
 
 }
